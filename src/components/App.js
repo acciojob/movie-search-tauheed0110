@@ -28,9 +28,11 @@ const App = () => {
   }
   return (
     <div>
-        <label htmlFor="search">Search Movie</label><br />
-        <input type="text" placeholder="Enter movie name.." value={value} onChange={(e) => {setValue(e.target.value)}}/>
-        <button onClick={handleClick}>Search</button>
+        <form>
+          <label htmlFor="search">Search Movie</label><br />
+          <input type="text" placeholder="Enter movie name.." value={value} onChange={(e) => {setValue(e.target.value)}}/>
+          <button onClick={handleClick}>Search</button>
+        </form>
         <ul>
           {
             movies.length ? 
