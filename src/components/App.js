@@ -42,7 +42,7 @@ const App = () => {
                 <img src={movie.Poster}alt="loading.."/>
               </li>
             }) : 
-            <p className="error">{logError ? "Invalid movie name. Please try again.": null}</p>
+            <li className="error">{logError ? "Invalid movie name. Please try again.": null}</li>
           }
         </ul>
     </div>
