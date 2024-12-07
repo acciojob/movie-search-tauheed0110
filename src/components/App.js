@@ -10,16 +10,19 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [logError, setLogError] = useState(false);
 
-  function handleClick(){
+  function handleClick(e){
+    e.preventDefault();
     fetch(`${API_URL}&s=${value}`)
     .then(resolved => resolved.json())
     .then(data => {
       console.log(data.Search); 
       if(data.Error){
         setLogError(true);
+        setValue("");
       }else{
         setMovies(data.Search);
         setLogError(false);
+        setValue("");
       }
     })
     .catch(error => {
@@ -31,7 +34,7 @@ const App = () => {
         <form>
           <label htmlFor="search">Search Movie</label><br />
           <input type="text" placeholder="Enter movie name.." value={value} onChange={(e) => {setValue(e.target.value)}}/>
-          <button onClick={handleClick}>Search</button>
+          <button onClick={(e)=>{handleClick(e)}}>Search</button>
         </form>
         <ul>
           {
@@ -42,7 +45,7 @@ const App = () => {
                 <img src={movie.Poster}alt="loading.."/>
               </li>
             }) : 
-            <li className="error">{logError ? "Invalid movie name. Please try again.": null}</li>
+            logError && <li className="error">Invalid movie name. Please try again.</li>      
           }
         </ul>
     </div>
